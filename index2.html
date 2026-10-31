@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HALLOWEEN — SECRET FRIENDS</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;min-height:100vh;padding:20px;
+ display:flex;align-items:center;justify-content:center;
+ background:radial-gradient(ellipse,#321606,#080808 75%);
+ color:#eee;font-family:Georgia,serif;overflow-x:hidden
+}
+#particles{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.particle{
+ position:absolute;bottom:-20px;background:#ff852c;
+ border-radius:50%;box-shadow:0 0 12px #ff852c;
+ animation:rise linear infinite
+}
+@keyframes rise{
+ to{transform:translateY(-110vh) translateX(70px);opacity:0}
+}
+.fog{
+ position:fixed;inset:-50%;pointer-events:none;
+ background:radial-gradient(ellipse,#9c46152c,transparent 60%);
+ animation:fog 12s infinite alternate
+}
+@keyframes fog{
+ to{transform:translate(5%,3%) scale(1.2)}
+}
+.card{
+ position:relative;z-index:2;width:100%;max-width:650px;
+ padding:35px 24px;background:#12110fee;
+ border:1px solid #a65316;
+ box-shadow:0 0 50px #8b390a55;text-align:center;
+ animation:appear 1s ease
+}
+@keyframes appear{
+ from{opacity:0;transform:translateY(25px)}
+ to{opacity:1;transform:none}
+}
+.stamp{
+ color:#ff852c;border:1px solid;padding:8px;
+ display:inline-block;letter-spacing:4px;
+ transform:rotate(-4deg);animation:blink 2s infinite
+}
+@keyframes blink{50%{opacity:.35}}
+.small{color:#aaa;font:12px monospace;letter-spacing:2px}
+h1{font-size:clamp(32px,8vw,52px)}
+h1 span,.orange{color:#ff852c}
+hr{border-color:#583319;margin:25px 0}
+.names{
+ display:grid;grid-template-columns:1fr 1fr;
+ gap:12px;margin:25px 0
+}
+.name{
+ background:#21170f;border:1px solid #633619;
+ padding:17px;color:#ffab55;
+ font: bold 15px monospace;
+ animation:glow 3s infinite alternate
+}
+@keyframes glow{
+ to{box-shadow:0 0 18px #ff852c44}
+}
+button{
+ width:100%;padding:17px;background:#e87820;
+ color:#130b05;border:0;font-weight:bold;
+ letter-spacing:2px;cursor:pointer;margin-top:20px
+}
+button:hover{background:#ffab55}
+#final{display:none}
+.ghost{font-size:35px;animation:float 2s infinite alternate}
+@keyframes float{to{transform:translateY(-12px) rotate(8deg)}}
+.message{font-size:20px;line-height:1.7}
+</style>
+</head>
+<body>
+
+<div class="fog"></div>
+<div id="particles"></div>
+
+<div class="card" id="start">
+
+ <div class="stamp">TOP SECRET</div>
+
+ <p class="small">СПЕЦІАЛЬНИЙ АРХІВ · 01.11</p>
+
+ <h1>HALLOWEEN <span>FILE</span></h1>
+
+ <p>Секретна справа №0101-F</p>
+
+ <hr>
+
+ <p class="small">СПИСОК ПІДОЗРЮВАНИХ</p>
+
+ <div class="names">
+  <div class="name">VOLOSHKA</div>
+  <div class="name">LOLO</div>
+  <div class="name">Merry Merrs</div>
+  <div class="name">Petro</div>
+ </div>
+
+ <p>Увага! Виявлено групу особливо небезпечних любителів веселощів.</p>
+
+ <button onclick="reveal()">РОЗСЕКРЕТИТИ ДОСЬЄ</button>
+
+ <p class="small">ДОСТУП ДОЗВОЛЕНО ЛИШЕ УЧАСНИКАМ</p>
+
+</div>
+
+<div class="card" id="final">
+
+ <div class="ghost">👻 🎃 👻</div>
+
+ <p class="small">ДОСЬЄ РОЗСЕКРЕЧЕНО</p>
+
+ <h1>З ХЕЛЛОУЇНОМ!</h1>
+
+ <hr>
+
+ <p class="message">
+ VOLOSHKA, LOLO, Merry Merrs і Petro! 🧡
+ <br><br>
+ Вітаю вас із наймістичнішим святом року!
+ <br><br>
+ Бажаю море позитиву, веселощів,
+ крутих моментів і поменше привидів
+ у реальному житті! 😂
+ <br><br>
+ Нехай цей день буде незабутнім,
+ а настрій — страшенно хорошим!
+ <br><br>
+ <span class="orange">БУ! 👻</span>
+ </p>
+
+ <div style="background:#24170e;padding:20px">
+  <h2>🎃 СЕКРЕТНЕ ПОСЛАННЯ</h2>
+  <p class="message">
+   Ви всі офіційно внесені
+   до архіву найкращих людей!
+   <br><br>
+   Зі святом! 🖤
+  </p>
+ </div>
+
+ <hr>
+
+ <p class="small">СПРАВУ ЗАКРИТО · 01.11</p>
+
+</div>
+
+<script>
+const particles=document.getElementById("particles");
+
+for(let i=0;i<40;i++){
+ const p=document.createElement("div");
+ p.className="particle";
+ p.style.left=Math.random()*100+"%";
+ p.style.animationDuration=(5+Math.random()*9)+"s";
+ p.style.animationDelay=Math.random()*8+"s";
+ const size=2+Math.random()*4;
+ p.style.width=size+"px";
+ p.style.height=size+"px";
+ particles.appendChild(p);
+}
+
+function reveal(){
+ document.getElementById("start").style.display="none";
+ const f=document.getElementById("final");
+ f.style.display="block";
+ f.style.animation="appear 1.2s ease";
+ document.title="HAPPY HALLOWEEN!";
+}
+</script>
+
+</body>
+</html>
